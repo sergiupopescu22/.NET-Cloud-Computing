@@ -1,25 +1,40 @@
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
+
 namespace DATC_lab_1;
 
-public class Student
+public class Student: TableEntity
 {
-    public string name 
+    public string Name 
     { get; set; }
 
-    public int year 
+    public int Year 
     { get; set; }
 
-    public string faculty
+    public string Faculty
     { get; set; }
 
-    public int id 
+    public int Id 
     { get; set; }
 
-    public Student(string name, int year, string faculty, int id)
+    public Student()
     {
-        this.name = name;
-        this.year = year;
-        this.faculty = faculty;
-        this.id = id;
+        this.PartitionKey = "-";
+        this.RowKey = "-";
+        this.Name = "-";
+        this.Id = 0;
+        this.Faculty = "-";
+        this.Year = 0;
+    }
+
+    public Student(string partitionKey, string rowKey, string name, int year, string faculty, int id)
+    {
+        this.PartitionKey = partitionKey;
+        this.RowKey = rowKey;
+        this.Name = name;
+        this.Year = year;
+        this.Faculty = faculty;
+        this.Id = id;
     }
 
 }
